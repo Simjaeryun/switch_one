@@ -1,3 +1,5 @@
+"use client";
+
 import { useQuery } from "@repo/shared/lib/client";
 import { getExchangeRates } from "./exchange-rate.api";
 import { END_POINT } from "@/_constants/end-point";

@@ -1,10 +1,8 @@
-import { getWallets } from "@/_api/wallet/wallet.api";
+import { ExchangeAction } from "@/_components/info/exchange-action";
 import { ExchangeRateCard } from "@/_components/info/exchange-rates";
 import { Wallets } from "@/_components/info/wallets";
 
-export default async function InfoPage() {
-  const wallets = await getWallets();
-
+export default function InfoPage() {
   return (
     <main className="flex h-full flex-col">
       <div className="mb-6">
@@ -17,11 +15,11 @@ export default async function InfoPage() {
       <div className="flex min-h-0 flex-1 gap-6">
         <div className="flex min-h-0 w-1/2 flex-col gap-6">
           <ExchangeRateCard />
-          <Wallets data={wallets} />
+          <Wallets />
         </div>
 
         <div className="w-1/2">
-          <ExchangeRateCard />
+          <ExchangeAction />
         </div>
       </div>
     </main>

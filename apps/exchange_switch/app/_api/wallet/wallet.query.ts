@@ -1,3 +1,5 @@
+"use client";
+
 import { END_POINT } from "@/_constants/end-point";
 import { useQuery } from "@repo/shared/lib/client";
 import { getWallets } from "./wallet.api";
@@ -10,5 +12,9 @@ export function useWalletQuery() {
       return result;
     },
     refetchInterval: 60000, // 1분마다 자동 refetch
+    initialData: {
+      totalKrwBalance: 0,
+      wallets: [],
+    },
   });
 }

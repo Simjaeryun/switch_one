@@ -18,6 +18,7 @@ export const serverAPI = ky.create({
           message: `[API] ${request.url} ${request.method}`,
         });
         const token = await getTokenFromCookie();
+
         if (token) {
           request.headers.set("Authorization", `Bearer ${token}`);
         }
