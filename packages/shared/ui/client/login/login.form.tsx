@@ -7,7 +7,7 @@ import { SwitchOneLogo } from "../../server";
 
 interface LoginFormProps {
   title: string;
-  onSubmitFn: (data: { email: string; password: string }) => void;
+  onSubmitFn: (data: { email: string }) => void;
 }
 
 export function LoginForm({ title, onSubmitFn }: LoginFormProps) {

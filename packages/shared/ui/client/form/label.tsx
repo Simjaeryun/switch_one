@@ -1,4 +1,4 @@
-import { cn } from "@repo/shared/lib";
+import { cn } from "../../../lib/client";
 
 export function FormLabel({
   children,

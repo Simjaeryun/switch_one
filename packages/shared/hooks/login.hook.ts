@@ -2,14 +2,12 @@ import { useForm } from "react-hook-form";
 
 interface LoginFormData {
   email: string;
-  password: string;
 }
 
 export function useLogin() {
   const form = useForm<LoginFormData>({
     defaultValues: {
       email: "",
-      password: "",
     },
     mode: "onChange",
   });

@@ -1,20 +1,13 @@
 import { cookies } from "next/headers";
-import { DEFAULT_COOKIE_OPTIONS } from "../constants/cookie";
+import { DEFAULT_COOKIE_OPTIONS } from "../../constants/cookie";
 
 /**
  * 서버 사이드에서 토큰을 쿠키에 설정
  */
 export async function setTokenFromCookie(token: string) {
   const cookieStore = await cookies();
-  cookieStore.set("token", token, {
-    httpOnly: DEFAULT_COOKIE_OPTIONS.httpOnly,
-    secure: DEFAULT_COOKIE_OPTIONS.secure,
-    maxAge: DEFAULT_COOKIE_OPTIONS.maxAge,
-    path: DEFAULT_COOKIE_OPTIONS.path,
-    sameSite: "lax",
-  });
+  cookieStore.set("token", token, DEFAULT_COOKIE_OPTIONS);
 }
-
 /**
  * 서버 사이드에서 토큰을 쿠키에서 가져오기
  */

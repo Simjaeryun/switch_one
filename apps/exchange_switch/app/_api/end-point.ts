@@ -1,5 +1,5 @@
 export const END_POINT = {
-  LOGIN: "/auth/login",
+  LOGIN: "auth/login",
   EXCHANGE: {
     RATES: "/exchange-rates/latest",
   },

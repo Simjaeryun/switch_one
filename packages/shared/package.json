@@ -4,11 +4,12 @@
   "private": true,
   "exports": {
     "./hooks": "./hooks/index.ts",
-    "./lib": "./lib/index.ts",
     "./types": "./types/index.ts",
     "./providers": "./providers/index.ts",
     "./ui/server": "./ui/server/index.ts",
-    "./ui/client": "./ui/client/index.ts"
+    "./ui/client": "./ui/client/index.ts",
+    "./lib/server": "./lib/server/index.ts",
+    "./lib/client": "./lib/client/index.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.10",

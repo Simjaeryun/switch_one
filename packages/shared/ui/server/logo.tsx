@@ -90,8 +90,8 @@ export function SwitchOneLogo({
             y2="34.4375"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#F7941D" />
-            <stop offset="1" stop-color="white" />
+            <stop stopColor="#F7941D" />
+            <stop offset="1" stopColor="white" />
           </linearGradient>
           <linearGradient
             id="paint1_linear_12709_95757"
@@ -101,13 +101,13 @@ export function SwitchOneLogo({
             y2="10.6135"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0.21" stop-color="#E6801B" />
-            <stop offset="0.27" stop-color="#E6801B" stop-opacity="0.96" />
-            <stop offset="0.36" stop-color="#E8821B" stop-opacity="0.86" />
-            <stop offset="0.47" stop-color="#EB851B" stop-opacity="0.7" />
-            <stop offset="0.61" stop-color="#EE8A1C" stop-opacity="0.47" />
-            <stop offset="0.75" stop-color="#F3901C" stop-opacity="0.19" />
-            <stop offset="0.84" stop-color="#F7941D" stop-opacity="0" />
+            <stop offset="0.21" stopColor="#E6801B" />
+            <stop offset="0.27" stopColor="#E6801B" stopOpacity="0.96" />
+            <stop offset="0.36" stopColor="#E8821B" stopOpacity="0.86" />
+            <stop offset="0.47" stopColor="#EB851B" stopOpacity="0.7" />
+            <stop offset="0.61" stopColor="#EE8A1C" stopOpacity="0.47" />
+            <stop offset="0.75" stopColor="#F3901C" stopOpacity="0.19" />
+            <stop offset="0.84" stopColor="#F7941D" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint2_linear_12709_95757"
@@ -117,8 +117,8 @@ export function SwitchOneLogo({
             y2="8.56249"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#2B3848" />
-            <stop offset="1" stop-color="white" />
+            <stop stopColor="#2B3848" />
+            <stop offset="1" stopColor="white" />
           </linearGradient>
           <linearGradient
             id="paint3_linear_12709_95757"
@@ -128,11 +128,11 @@ export function SwitchOneLogo({
             y2="31.9863"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#2B3848" />
-            <stop offset="0.21" stop-color="#2B3848" stop-opacity="0.9" />
-            <stop offset="0.51" stop-color="#2B3848" stop-opacity="0.64" />
-            <stop offset="0.86" stop-color="#2B3848" stop-opacity="0.2" />
-            <stop offset="1" stop-color="#2B3848" stop-opacity="0" />
+            <stop stopColor="#2B3848" />
+            <stop offset="0.21" stopColor="#2B3848" stopOpacity="0.9" />
+            <stop offset="0.51" stopColor="#2B3848" stopOpacity="0.64" />
+            <stop offset="0.86" stopColor="#2B3848" stopOpacity="0.2" />
+            <stop offset="1" stopColor="#2B3848" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>

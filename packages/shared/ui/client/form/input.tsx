@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { cn } from "@repo/shared/lib";
+import { cn } from "../../../lib/client";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
