@@ -27,7 +27,6 @@ export function LoginForm({ title, onSubmitFn }: LoginFormProps) {
         className="flex flex-col gap-4 md:gap-6"
       >
         <div className="flex flex-col gap-2">
-          <FormLabel htmlFor="email">아이디(이메일)</FormLabel>
           <Input
             type="email"
             id="email"
@@ -47,7 +46,7 @@ export function LoginForm({ title, onSubmitFn }: LoginFormProps) {
 
         <button
           type="submit"
-          className="mt-2 w-full rounded-md bg-[#21C66B] py-2 text-sm font-medium text-white md:mt-4 md:py-3 md:text-base"
+          className="mt-2 w-full rounded-md bg-[#f7931a] py-2 text-sm font-medium text-white md:mt-4 md:py-3 md:text-base"
         >
           로그인
         </button>
