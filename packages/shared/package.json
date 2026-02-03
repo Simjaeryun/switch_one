@@ -1,0 +1,31 @@
+{
+  "name": "@repo/shared",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./hooks": "./hooks/index.ts",
+    "./lib": "./lib/index.ts",
+    "./types": "./types/index.ts",
+    "./providers": "./providers/index.ts",
+    "./ui/server": "./ui/server/index.ts",
+    "./ui/client": "./ui/client/index.ts"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.62.10",
+    "clsx": "^2.1.1",
+    "ky": "^1.7.3",
+    "react-hook-form": "^7.54.2",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:*",
+    "@types/react": "^19.0.7",
+    "react": "^19.0.0",
+    "typescript": "^5.7.3",
+    "next": "^16.0.0",
+    "@types/node": "^20.19.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  }
+}
