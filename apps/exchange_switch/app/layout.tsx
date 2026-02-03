@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TanstackQueryProvider } from "@repo/shared/providers";
+import { Wrap } from "@repo/shared/ui/server";
 
 export const metadata: Metadata = {
   title: "Enterprise Admin",
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <TanstackQueryProvider>{children}</TanstackQueryProvider>
+        <TanstackQueryProvider>
+          <Wrap>{children}</Wrap>
+        </TanstackQueryProvider>
       </body>
     </html>
   );

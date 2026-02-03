@@ -6,5 +6,9 @@ interface WrapProps {
 }
 
 export function Wrap({ children, className = "" }: WrapProps) {
-  return <div className={`w-full max-w-[1000px] ${className}`}>{children}</div>;
+  return (
+    <div className={`mx-auto w-full max-w-[1440px] ${className}`}>
+      {children}
+    </div>
+  );
 }
