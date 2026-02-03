@@ -2,6 +2,7 @@
 
 import { ROUTE } from "@/_constants/route";
 import { cn } from "@repo/shared/lib/client";
+import { removeTokenFromCookie } from "@repo/shared/lib/server";
 import { SwitchOneLogo } from "@repo/shared/ui/server";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,8 +13,7 @@ export function LoggedInHeader() {
   const isActive = (path: string) => pathname === path;
 
   const handleLogout = () => {
-    // TODO: 로그아웃 로직 구현
-    console.log("Logout clicked");
+    removeTokenFromCookie();
   };
 
   return (

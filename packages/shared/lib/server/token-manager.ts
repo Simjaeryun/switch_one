@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import { DEFAULT_COOKIE_OPTIONS } from "../../constants/cookie";
+import { redirect } from "next/navigation";
 
 /**
  * 서버 사이드에서 토큰을 쿠키에 설정
@@ -23,5 +24,6 @@ export async function getTokenFromCookie(): Promise<string | undefined> {
  */
 export async function removeTokenFromCookie() {
   const cookieStore = await cookies();
-  cookieStore.delete("token");
+  cookieStore.set("token", "", { ...DEFAULT_COOKIE_OPTIONS, maxAge: 0 });
+  redirect("/");
 }

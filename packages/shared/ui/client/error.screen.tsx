@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { Wrap } from "../server/wrap";
 import { SwitchOneLogo } from "../server/logo";
+import { removeTokenFromCookie } from "../../lib/server";
 
 interface ErrorScreenProps {
   error: Error & { digest?: string };
@@ -15,6 +15,10 @@ export function ErrorScreen({ error, reset }: ErrorScreenProps) {
     // 에러 로깅 등 필요한 작업 수행
     console.error("Error:", error);
   }, [error]);
+
+  const handleGoHome = () => {
+    removeTokenFromCookie();
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-16">
@@ -47,12 +51,12 @@ export function ErrorScreen({ error, reset }: ErrorScreenProps) {
           >
             다시 시도
           </button>
-          <Link
-            href="/"
+          <button
+            onClick={handleGoHome}
             className="rounded-md border-2 border-[#e6e6e6] bg-white px-6 py-3 text-sm font-medium text-[#222222] transition-colors hover:border-[#3CDC84] hover:text-[#3CDC84] md:px-8 md:py-3 md:text-base"
           >
             홈으로 돌아가기
-          </Link>
+          </button>
         </div>
       </Wrap>
     </div>

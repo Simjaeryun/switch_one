@@ -1,3 +1,3 @@
 export { default as ky } from "ky";
-export { apiInstance, loginApiInstance } from "./api-instance";
+export { serverAPI, loginApiInstance } from "./server-api-instance";
 export * from "./token-manager";

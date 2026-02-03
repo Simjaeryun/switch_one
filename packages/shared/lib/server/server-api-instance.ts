@@ -1,8 +1,10 @@
+"use server";
+
 import ky from "ky";
 import { ENV } from "../../constants/env";
-import { getTokenFromCookie } from "./token-manager";
+import { getTokenFromCookie, removeTokenFromCookie } from "./token-manager";
 
-export const apiInstance = ky.create({
+export const serverAPI = ky.create({
   prefixUrl: ENV.API_URL,
   headers: {
     "Content-Type": "application/json",
@@ -16,16 +18,22 @@ export const apiInstance = ky.create({
         }
       },
     ],
+    beforeError: [
+      async (error) => {
+        return error;
+      },
+    ],
     afterResponse: [
       async (request, options, response: Response) => {
         const data = await response.json();
+
         return data;
       },
     ],
   },
 });
 
-export const loginApiInstance = apiInstance.create({
+export const loginApiInstance = ky.create({
   prefixUrl: ENV.API_URL,
   headers: {
     accept: "*/*",
