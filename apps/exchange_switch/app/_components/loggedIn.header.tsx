@@ -17,8 +17,8 @@ export function LoggedInHeader() {
   };
 
   return (
-    <header className="supports-backdrop-filter:bg-white/60 sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+    <header className="supports-backdrop-filter:bg-white/60 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur">
+      <div className="flex h-16 items-center justify-between">
         {/* 로고 */}
         <Link
           href="/"
