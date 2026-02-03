@@ -3,6 +3,7 @@
 import ky from "ky";
 import { ENV } from "../../constants/env";
 import { getTokenFromCookie, removeTokenFromCookie } from "./token-manager";
+import { logger } from "./logger";
 
 export const serverAPI = ky.create({
   prefixUrl: ENV.API_URL,
@@ -12,6 +13,10 @@ export const serverAPI = ky.create({
   hooks: {
     beforeRequest: [
       async (request) => {
+        logger({
+          eventType: "api_call",
+          message: `[API] ${request.url} ${request.method}`,
+        });
         const token = await getTokenFromCookie();
         if (token) {
           request.headers.set("Authorization", `Bearer ${token}`);
@@ -20,6 +25,10 @@ export const serverAPI = ky.create({
     ],
     beforeError: [
       async (error) => {
+        logger({
+          eventType: "api_error",
+          message: `[API] ${error.message}`,
+        });
         return error;
       },
     ],
