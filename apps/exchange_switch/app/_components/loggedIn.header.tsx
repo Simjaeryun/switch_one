@@ -1,5 +1,7 @@
 "use client";
 
+import { ROUTE } from "@/_constants/route";
+import { cn } from "@repo/shared/lib/client";
 import { SwitchOneLogo } from "@repo/shared/ui/server";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,22 +30,24 @@ export function LoggedInHeader() {
         {/* 내비게이션 */}
         <nav className="flex items-center gap-1 md:gap-2">
           <Link
-            href="/info"
-            className={`rounded-md px-3 py-2 text-sm font-medium transition-colors md:px-4 ${
-              isActive("/info")
+            href={ROUTE.INFO}
+            className={cn(
+              "rounded-md px-3 py-2 text-sm font-medium transition-colors md:px-4",
+              isActive(ROUTE.INFO)
                 ? "bg-gray-100 text-gray-900"
                 : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-            }`}
+            )}
           >
             환전 하기
           </Link>
           <Link
-            href="/exchange-history"
-            className={`rounded-md px-3 py-2 text-sm font-medium transition-colors md:px-4 ${
-              isActive("/exchange-history")
+            href={ROUTE.EXCHANGE_HISTORY}
+            className={cn(
+              "rounded-md px-3 py-2 text-sm font-medium transition-colors md:px-4",
+              isActive(ROUTE.EXCHANGE_HISTORY)
                 ? "bg-gray-100 text-gray-900"
                 : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-            }`}
+            )}
           >
             환전 내역
           </Link>

@@ -1,3 +1,5 @@
+"use server";
+
 import { cookies } from "next/headers";
 import { DEFAULT_COOKIE_OPTIONS } from "../../constants/cookie";
 
@@ -23,10 +25,3 @@ export async function removeTokenFromCookie() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
 }
-
-export const tokenManager = {
-  // 서버 사이드
-  setToken: setTokenFromCookie,
-  getToken: getTokenFromCookie,
-  removeToken: removeTokenFromCookie,
-};

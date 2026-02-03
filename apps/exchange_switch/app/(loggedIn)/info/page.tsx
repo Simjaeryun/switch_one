@@ -1,3 +1,6 @@
-export default function InfoPage() {
-  return <div>InfoPage</div>;
+import { getExchangeRateAction } from "@/_api/exchange-rate.api";
+
+export default async function InfoPage() {
+  const data = await getExchangeRateAction();
+  return <div>{JSON.stringify(data)}</div>;
 }

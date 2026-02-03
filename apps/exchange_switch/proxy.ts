@@ -1,9 +1,9 @@
-import { tokenManager } from "@repo/shared/lib/server";
 import { NextRequest, NextResponse } from "next/server";
+import { getTokenFromCookie } from "@repo/shared/lib/server";
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const token = await tokenManager.getToken();
+  const token = await getTokenFromCookie();
 
   // 로그인 페이지 경로
   const isLoginPage = pathname === "/";
