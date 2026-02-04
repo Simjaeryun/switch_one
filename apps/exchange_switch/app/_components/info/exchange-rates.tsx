@@ -1,7 +1,7 @@
 "use client";
 
 import { useExchangeRateQuery } from "@/_api/exchange-rate/exchange-rate.query";
-import { ExchangeRateResponse } from "@/_types/exchange-rate";
+import { ExchangeRateDTO } from "@/_types/exchange-rate";
 import { NumberToCommas } from "@repo/shared/utils";
 
 const CURRENCY_SYMBOL = {
@@ -14,7 +14,7 @@ export function ExchangeRateCard() {
 
   return (
     <div className="flex gap-3">
-      {data?.map((item: ExchangeRateResponse[0]) => (
+      {data?.map((item: ExchangeRateDTO["ExchangeRateResponse"][0]) => (
         <Card key={item.exchangeRateId} {...item} />
       ))}
     </div>
@@ -27,7 +27,7 @@ function Card({
   rate,
   changePercentage,
   applyDateTime,
-}: ExchangeRateResponse[0]) {
+}: ExchangeRateDTO["ExchangeRateResponse"][0]) {
   const isPositive = changePercentage > 0;
   const isNegative = changePercentage < 0;
 

@@ -1,6 +1,6 @@
 "use server";
 
-import { LoginResponse } from "@/_types/login";
+import { LoginDTO } from "@/_types/login";
 import { END_POINT } from "../_constants/end-point";
 import { loginApiInstance, setTokenFromCookie } from "@repo/shared/lib/server";
 
@@ -11,7 +11,7 @@ export async function loginAction(email: string) {
       .post(END_POINT.LOGIN, {
         searchParams: { email },
       })
-      .json()) as ApiResponse<LoginResponse>;
+      .json()) as ApiResponse<LoginDTO["LoginResponse"]>;
 
     // 응답에서 토큰 추출 및 쿠키에 저장
     if (data.code === "OK") {
