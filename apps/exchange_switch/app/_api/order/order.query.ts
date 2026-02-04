@@ -10,5 +10,6 @@ export const useOrderQuoteQuery = (searchParams: OrderDTO["OrderQuoteReq"]) => {
       const result = await getOrderQuote(searchParams);
       return result;
     },
+    enabled: searchParams.forexAmount > 0,
   });
 };
