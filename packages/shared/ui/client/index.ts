@@ -4,3 +4,5 @@ export { NotFoundScreen } from "./not-found.screen";
 
 // Form 관련 components
 export { Input, FormLabel } from "./form";
+
+export * from "./table";

@@ -9,6 +9,16 @@ type OrderQuoteRequest = {
   forexAmount: number;
 };
 
+type OrderHistoryResponse = {
+  orderId: number;
+  fromCurrency: string;
+  fromAmount: number;
+  toCurrency: string;
+  toAmount: number;
+  appliedRate: number;
+  orderedAt: string;
+};
+
 type OrderCreateRequest = {
   exchangeRateId: number;
   fromCurrency: string;
@@ -20,4 +30,5 @@ export type OrderDTO = {
   OrderQuoteReq: OrderQuoteRequest;
   OrderQuoteRes: OrderQuoteResponse;
   OrderCreateReq: OrderCreateRequest;
+  OrderHistoryRes: Array<OrderHistoryResponse>;
 };

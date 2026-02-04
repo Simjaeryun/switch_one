@@ -4,6 +4,7 @@ import { END_POINT } from "@/_constants/end-point";
 import { getOrderQuote, postOrderCreate } from "./order.api";
 import { OrderDTO } from "@/_types/order";
 import { useMutation, useQueryClient } from "@repo/shared/lib/client";
+import { revalidateCache } from "@repo/shared/lib/server";
 
 // 주문 견적 조회 (실시간성 데이터이므로 mutate 사용)
 export const useOrderQuoteMutation = () => {
@@ -29,6 +30,7 @@ export const useOrderCreateMutation = () => {
       alert(data.message);
       queryClient.invalidateQueries({ queryKey: [END_POINT.ORDER.LIST] });
       queryClient.invalidateQueries({ queryKey: [END_POINT.WALLET.WALLETS] });
+      revalidateCache({ key: "order-history" });
     },
   });
 };

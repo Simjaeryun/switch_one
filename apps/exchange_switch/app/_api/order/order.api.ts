@@ -28,3 +28,18 @@ export const postOrderCreate = async (body: OrderDTO["OrderCreateReq"]) => {
     return parseErrorResponse(error) as ApiResponse<null>;
   }
 };
+
+export const getOrderHistory = async () => {
+  const response = await serverAPI.get(END_POINT.ORDER.LIST, {
+    next: {
+      tags: ["order-history"],
+    },
+    cache: "force-cache",
+  });
+
+  const data = (await response.json()) as ApiResponse<
+    OrderDTO["OrderHistoryRes"]
+  >;
+
+  return data.data;
+};
