@@ -1,13 +1,26 @@
 "use client";
 
 import { useExchangeRateQuery } from "@/_api/exchange-rate/exchange-rate.query";
-import { useOrderQuoteMutation } from "@/_api/order/order.mutate";
+import {
+  useOrderCreateMutation,
+  useOrderQuoteMutation,
+} from "@/_api/order/order.mutate";
 import { OrderDTO } from "@/_types/order";
 import { useForm } from "@repo/shared/lib/client";
 import { useEffect, useState } from "react";
 
-export const useExchangeAction = () => {
-  const { mutate } = useOrderQuoteMutation();
+export const useExchangeAction = ({
+  defaultValues,
+}: {
+  defaultValues: {
+    orderType: "buy" | "sell";
+    currency: "USD" | "JPY";
+    amount: number;
+    exchangeRateId: number;
+  };
+}) => {
+  const { mutate: mutateQuote } = useOrderQuoteMutation();
+  const { mutate: mutateCreateOrder } = useOrderCreateMutation();
   const [quoteData, setQuoteData] = useState<OrderDTO["OrderQuoteRes"] | null>(
     null
   );
@@ -22,12 +35,9 @@ export const useExchangeAction = () => {
     orderType: "buy" | "sell";
     currency: "USD" | "JPY";
     amount: number;
+    exchangeRateId: number;
   }>({
-    defaultValues: {
-      orderType: "buy",
-      currency: "JPY",
-      amount: 0,
-    },
+    defaultValues,
   });
 
   useEffect(() => {
@@ -35,7 +45,7 @@ export const useExchangeAction = () => {
       setQuoteData(null);
       return;
     }
-    mutate(
+    mutateQuote(
       {
         fromCurrency:
           form.watch("orderType") === "buy" ? "KRW" : form.watch("currency"),
@@ -54,10 +64,22 @@ export const useExchangeAction = () => {
     );
   }, [form.watch("amount")]);
 
+  const onSubmit = () => {
+    mutateCreateOrder({
+      exchangeRateId: form.watch("exchangeRateId"),
+      fromCurrency:
+        form.watch("orderType") === "buy" ? "KRW" : form.watch("currency"),
+      toCurrency:
+        form.watch("orderType") === "buy" ? form.watch("currency") : "KRW",
+      forexAmount: form.watch("amount"),
+    });
+  };
+
   return {
     form,
     quoteData,
     exchangeRates,
     onResetAmount,
+    onSubmit,
   };
 };

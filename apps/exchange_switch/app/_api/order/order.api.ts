@@ -15,3 +15,11 @@ export const getOrderQuote = async (
 
   return data.data;
 };
+
+export const postOrderCreate = async (body: OrderDTO["OrderCreateReq"]) => {
+  const response = await serverAPI.post(END_POINT.ORDER.LIST, { json: body });
+
+  const data = (await response.json()) as ApiResponse<null>;
+
+  return data.data;
+};

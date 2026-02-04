@@ -5,13 +5,23 @@ import { FormLabel } from "@repo/shared/ui/client";
 import { useExchangeAction } from "./exchange-action.hook";
 import { NumberToCommas } from "@repo/shared/utils";
 
-export function ExchangeAction() {
-  const { form, quoteData, exchangeRates, onResetAmount } = useExchangeAction();
+export function ExchangeAction({
+  defaultValues,
+}: {
+  defaultValues: {
+    orderType: "buy" | "sell";
+    currency: "USD" | "JPY";
+    amount: number;
+    exchangeRateId: number;
+  };
+}) {
+  const { form, quoteData, exchangeRates, onResetAmount, onSubmit } =
+    useExchangeAction({ defaultValues });
 
   return (
     <form
-      className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg"
-      onSubmit={form.handleSubmit((data) => console.log(data))}
+      className="flex flex-1 flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-lg"
+      onSubmit={form.handleSubmit(onSubmit)}
     >
       {/* 헤더 */}
       <div className="mb-6">
@@ -39,6 +49,7 @@ export function ExchangeAction() {
                   onClick={() => {
                     rate.currency !== field.value && onResetAmount();
                     field.onChange(rate.currency as "USD" | "JPY");
+                    form.setValue("exchangeRateId", rate.exchangeRateId);
                   }}
                   className={cn(
                     "flex-1 rounded-lg border-2 px-4 py-3 text-sm font-medium transition-all",
