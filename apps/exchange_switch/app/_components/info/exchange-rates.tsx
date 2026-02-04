@@ -56,7 +56,7 @@ function Card({
                   : "text-gray-700"
             }`}
           >
-            {NumberToCommas(rate)}
+            {NumberToCommas(rate)} KRW
           </div>
           <div className="mt-0.5 text-xs text-gray-500">KRW</div>
         </div>

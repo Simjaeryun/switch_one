@@ -3,6 +3,12 @@
 import { useWalletQuery } from "@/_api/wallet/wallet.query";
 import { NumberToCommas } from "@repo/shared/utils";
 
+const CURRENCY_SYMBOL = {
+  USD: "$",
+  JPY: "¥",
+  KRW: "₩",
+};
+
 export function Wallets() {
   const { data } = useWalletQuery();
 
@@ -22,6 +28,7 @@ export function Wallets() {
                 {item.currency}
               </div>
               <div className="mt-1 text-lg font-bold text-gray-900">
+                {CURRENCY_SYMBOL[item.currency as keyof typeof CURRENCY_SYMBOL]}{" "}
                 {NumberToCommas(item.balance)}
               </div>
             </div>
@@ -29,10 +36,10 @@ export function Wallets() {
         </div>
       </div>
       <div className="border-t border-gray-200 p-4">
-        <div className="text-sm text-gray-500">
+        <div className="flex justify-between text-xl text-gray-500">
           <span className="font-bold">총 보유 자산</span>
-          <span className="ml-2 text-gray-900">
-            {NumberToCommas(data?.totalKrwBalance)}
+          <span className="ml-2 text-xl font-semibold text-blue-500">
+            {NumberToCommas(data?.totalKrwBalance)} {CURRENCY_SYMBOL["KRW"]}
           </span>
         </div>
       </div>
