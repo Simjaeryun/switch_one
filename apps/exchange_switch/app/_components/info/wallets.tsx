@@ -29,7 +29,7 @@ export function Wallets() {
       </div>
       <div className="border-t border-gray-200 p-4">
         <div className="text-sm text-gray-500">
-          <span className="font-bold">총 잔액</span>
+          <span className="font-bold">총 보유 자산</span>
           <span className="ml-2 text-gray-900">
             {data?.totalKrwBalance.toLocaleString("ko-KR")}
           </span>

@@ -4,8 +4,8 @@ import { TanstackQueryProvider } from "@repo/shared/providers";
 import { Wrap } from "@repo/shared/ui/server";
 
 export const metadata: Metadata = {
-  title: "Enterprise Admin",
-  description: "Enterprise Admin",
+  title: "Exchange Switch",
+  description: "Exchange Switch",
 };
 
 export default function RootLayout({

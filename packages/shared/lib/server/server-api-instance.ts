@@ -4,6 +4,7 @@ import ky from "ky";
 import { ENV } from "../../constants/env";
 import { getTokenFromCookie, removeTokenFromCookie } from "./token-manager";
 import { logger } from "./logger";
+import { redirect } from "next/navigation";
 
 export const serverAPI = ky.create({
   prefixUrl: ENV.API_URL,
@@ -30,6 +31,10 @@ export const serverAPI = ky.create({
           eventType: "api_error",
           message: `[API] ${error.message}`,
         });
+        if (error.response.status === 401 || error.response.status === 403) {
+          removeTokenFromCookie();
+          redirect("/");
+        }
         return error;
       },
     ],
