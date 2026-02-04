@@ -2,6 +2,7 @@
 
 import { useExchangeRateQuery } from "@/_api/exchange-rate/exchange-rate.query";
 import { ExchangeRateResponse } from "@/_types/exchange-rate";
+import { NumberToCommas } from "@repo/shared/utils";
 
 const CURRENCY_SYMBOL = {
   USD: "미국 달러",
@@ -55,10 +56,7 @@ function Card({
                   : "text-gray-700"
             }`}
           >
-            {rate.toLocaleString("ko-KR", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
+            {NumberToCommas(rate)}
           </div>
           <div className="mt-0.5 text-xs text-gray-500">KRW</div>
         </div>

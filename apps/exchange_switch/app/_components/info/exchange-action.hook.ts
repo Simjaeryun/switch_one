@@ -13,6 +13,11 @@ export const useExchangeAction = () => {
   );
   const { data: exchangeRates } = useExchangeRateQuery();
 
+  const onResetAmount = () => {
+    form.setValue("amount", 0);
+    setQuoteData(null);
+  };
+
   const form = useForm<{
     orderType: "buy" | "sell";
     currency: "USD" | "JPY";
@@ -26,11 +31,17 @@ export const useExchangeAction = () => {
   });
 
   useEffect(() => {
+    if (form.watch("amount") <= 0) {
+      setQuoteData(null);
+      return;
+    }
     mutate(
       {
-        fromCurrency: "KRW",
-        toCurrency: form.getValues().currency,
-        forexAmount: form.getValues().amount,
+        fromCurrency:
+          form.watch("orderType") === "buy" ? "KRW" : form.watch("currency"),
+        toCurrency:
+          form.watch("orderType") === "buy" ? form.watch("currency") : "KRW",
+        forexAmount: form.watch("amount"),
       },
       {
         onSuccess: (data) => {
@@ -47,5 +58,6 @@ export const useExchangeAction = () => {
     form,
     quoteData,
     exchangeRates,
+    onResetAmount,
   };
 };

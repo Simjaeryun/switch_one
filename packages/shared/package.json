@@ -9,7 +9,8 @@
     "./ui/server": "./ui/server/index.ts",
     "./ui/client": "./ui/client/index.ts",
     "./lib/server": "./lib/server/index.ts",
-    "./lib/client": "./lib/client/index.ts"
+    "./lib/client": "./lib/client/index.ts",
+    "./utils": "./utils/index.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.10",

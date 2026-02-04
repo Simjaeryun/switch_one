@@ -3,9 +3,10 @@
 import { cn, Controller } from "@repo/shared/lib/client";
 import { FormLabel } from "@repo/shared/ui/client";
 import { useExchangeAction } from "./exchange-action.hook";
+import { NumberToCommas } from "@repo/shared/utils";
 
 export function ExchangeAction() {
-  const { form, quoteData, exchangeRates } = useExchangeAction();
+  const { form, quoteData, exchangeRates, onResetAmount } = useExchangeAction();
 
   return (
     <form
@@ -35,7 +36,10 @@ export function ExchangeAction() {
                 <button
                   key={rate.currency}
                   type="button"
-                  onClick={() => field.onChange(rate.currency as "USD" | "JPY")}
+                  onClick={() => {
+                    rate.currency !== field.value && onResetAmount();
+                    field.onChange(rate.currency as "USD" | "JPY");
+                  }}
                   className={cn(
                     "flex-1 rounded-lg border-2 px-4 py-3 text-sm font-medium transition-all",
                     field.value === rate.currency
@@ -65,7 +69,10 @@ export function ExchangeAction() {
                   ? "bg-red-500 shadow-sm"
                   : "text-gray-600 hover:bg-gray-200"
               )}
-              onClick={() => field.onChange("buy")}
+              onClick={() => {
+                field.value !== "buy" && onResetAmount();
+                field.onChange("buy");
+              }}
             >
               살래요
             </button>
@@ -77,7 +84,10 @@ export function ExchangeAction() {
                   ? "bg-blue-500 shadow-sm"
                   : "text-gray-600 hover:bg-gray-200"
               )}
-              onClick={() => field.onChange("sell")}
+              onClick={() => {
+                field.value !== "sell" && onResetAmount();
+                field.onChange("sell");
+              }}
             >
               팔래요
             </button>
@@ -123,7 +133,7 @@ export function ExchangeAction() {
         </FormLabel>
         <div className="relative flex items-center overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-50">
           <div className="flex-1 px-4 py-3 text-lg font-semibold text-gray-900">
-            {quoteData?.krwAmount}
+            {NumberToCommas(quoteData?.krwAmount)}
           </div>
 
           <div
@@ -148,10 +158,7 @@ export function ExchangeAction() {
             <span className="text-sm text-gray-600">현재 환율</span>
             <span className="text-lg font-bold text-gray-900">
               {form.watch("currency") === "USD" ? "1 USD" : "1 JPY"}=
-              {quoteData.appliedRate.toLocaleString("ko-KR", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
+              {NumberToCommas(quoteData.appliedRate)}
             </span>
           </div>
           <div className="mt-2 flex items-center gap-2">

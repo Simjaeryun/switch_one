@@ -1,6 +1,7 @@
 "use client";
 
 import { useWalletQuery } from "@/_api/wallet/wallet.query";
+import { NumberToCommas } from "@repo/shared/utils";
 
 export function Wallets() {
   const { data } = useWalletQuery();
@@ -21,7 +22,7 @@ export function Wallets() {
                 {item.currency}
               </div>
               <div className="mt-1 text-lg font-bold text-gray-900">
-                {item.balance.toLocaleString("ko-KR")}
+                {NumberToCommas(item.balance)}
               </div>
             </div>
           ))}
@@ -31,7 +32,7 @@ export function Wallets() {
         <div className="text-sm text-gray-500">
           <span className="font-bold">총 보유 자산</span>
           <span className="ml-2 text-gray-900">
-            {data?.totalKrwBalance.toLocaleString("ko-KR")}
+            {NumberToCommas(data?.totalKrwBalance)}
           </span>
         </div>
       </div>

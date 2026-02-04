@@ -11,7 +11,7 @@ export function useWalletQuery() {
       const result = await getWallets();
       return result;
     },
-    refetchInterval: 60000, // 1분마다 자동 refetch
+    refetchInterval: 60000,
     initialData: {
       totalKrwBalance: 0,
       wallets: [],
