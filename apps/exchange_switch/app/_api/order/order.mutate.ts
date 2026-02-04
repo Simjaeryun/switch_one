@@ -17,13 +17,18 @@ export const useOrderCreateMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (body: OrderDTO["OrderCreateReq"]) => postOrderCreate(body),
-    onSuccess: () => {
-      alert("주문이 완료되었습니다.");
+    onSuccess: (data, body) => {
+      if (data.code !== "OK") {
+        queryClient.invalidateQueries({ queryKey: [END_POINT.EXCHANGE.RATES] });
+        queryClient.invalidateQueries({ queryKey: [END_POINT.ORDER.QUOTE] });
+        alert(data?.message || "주문 완료에 실패했습니다.");
+        return;
+      }
+
+      // 성공
+      alert(data.message);
       queryClient.invalidateQueries({ queryKey: [END_POINT.ORDER.LIST] });
       queryClient.invalidateQueries({ queryKey: [END_POINT.WALLET.WALLETS] });
-    },
-    onError: () => {
-      alert("주문 완료에 실패했습니다.");
     },
   });
 };

@@ -1,12 +1,8 @@
-import { getExchangeRates } from "@/_api/exchange-rate/exchange-rate.api";
-import { useExchangeRateQuery } from "@/_api/exchange-rate/exchange-rate.query";
 import { ExchangeAction } from "@/_components/info/exchange-action";
 import { ExchangeRateCard } from "@/_components/info/exchange-rates";
 import { Wallets } from "@/_components/info/wallets";
 
 export default async function InfoPage() {
-  const exchangeRates = await getExchangeRates();
-
   return (
     <main className="flex h-full flex-col">
       <div className="mb-6">
@@ -23,14 +19,7 @@ export default async function InfoPage() {
         </div>
 
         <div className="flex w-1/2 flex-1 flex-col">
-          <ExchangeAction
-            defaultValues={{
-              orderType: "buy",
-              currency: exchangeRates[0].currency as "USD" | "JPY",
-              amount: 0,
-              exchangeRateId: exchangeRates[0].exchangeRateId,
-            }}
-          />
+          <ExchangeAction />
         </div>
       </div>
     </main>

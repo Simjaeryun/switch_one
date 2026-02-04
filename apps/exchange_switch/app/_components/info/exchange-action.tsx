@@ -5,18 +5,15 @@ import { FormLabel } from "@repo/shared/ui/client";
 import { useExchangeAction } from "./exchange-action.hook";
 import { NumberToCommas } from "@repo/shared/utils";
 
-export function ExchangeAction({
-  defaultValues,
-}: {
-  defaultValues: {
-    orderType: "buy" | "sell";
-    currency: "USD" | "JPY";
-    amount: number;
-    exchangeRateId: number;
-  };
-}) {
-  const { form, quoteData, exchangeRates, onResetAmount, onSubmit } =
-    useExchangeAction({ defaultValues });
+export function ExchangeAction() {
+  const {
+    form,
+    quoteData,
+    exchangeRates,
+    onResetAmount,
+    onSubmit,
+    quoteFetching,
+  } = useExchangeAction();
 
   return (
     <form
@@ -124,6 +121,13 @@ export function ExchangeAction({
                 type="number"
                 id="amount"
                 name="amount"
+                readOnly={form.watch("currency") === ""}
+                onClick={() => {
+                  if (form.watch("currency") === "") {
+                    alert("통화를 선택해주세요");
+                    return;
+                  }
+                }}
                 placeholder="0"
                 value={field.value}
                 onChange={field.onChange}
@@ -172,33 +176,15 @@ export function ExchangeAction({
               {NumberToCommas(quoteData.appliedRate)}
             </span>
           </div>
-          <div className="mt-2 flex items-center gap-2">
-            <span
-              className={cn(
-                "text-xs font-medium",
-                quoteData.appliedRate > 0
-                  ? "text-red-600"
-                  : quoteData.appliedRate < 0
-                    ? "text-blue-600"
-                    : "text-gray-600"
-              )}
-            >
-              {quoteData.appliedRate > 0
-                ? "↑"
-                : quoteData.appliedRate < 0
-                  ? "↓"
-                  : "→"}{" "}
-              {Math.abs(quoteData.appliedRate).toFixed(2)}%
-            </span>
-            <span className="text-xs text-gray-500">전일 대비</span>
-          </div>
         </div>
       )}
 
       {/* 환전 버튼 */}
       <button
         type="submit"
-        disabled={!form.watch("amount") || form.watch("amount") <= 0}
+        disabled={
+          !form.watch("amount") || form.watch("amount") <= 0 || quoteFetching
+        }
         className={cn(
           "w-full rounded-lg bg-[#f7931a] px-6 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] hover:bg-[#e6801b] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
         )}

@@ -4,15 +4,15 @@ type OrderQuoteResponse = {
 };
 
 type OrderQuoteRequest = {
-  fromCurrency: "KRW" | "USD" | "JPY";
-  toCurrency: "KRW" | "USD" | "JPY";
+  fromCurrency: string;
+  toCurrency: string;
   forexAmount: number;
 };
 
 type OrderCreateRequest = {
   exchangeRateId: number;
-  fromCurrency: "KRW" | "USD" | "JPY";
-  toCurrency: "KRW" | "USD" | "JPY";
+  fromCurrency: string;
+  toCurrency: string;
   forexAmount: number;
 };
 

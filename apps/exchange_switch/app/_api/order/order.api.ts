@@ -3,6 +3,7 @@
 import { END_POINT } from "@/_constants/end-point";
 import { OrderDTO } from "@/_types/order";
 import { serverAPI } from "@repo/shared/lib/server";
+import { parseErrorResponse } from "@repo/shared/utils";
 
 export const getOrderQuote = async (
   searchParams: OrderDTO["OrderQuoteReq"]
@@ -17,9 +18,13 @@ export const getOrderQuote = async (
 };
 
 export const postOrderCreate = async (body: OrderDTO["OrderCreateReq"]) => {
-  const response = await serverAPI.post(END_POINT.ORDER.LIST, { json: body });
+  try {
+    const response = await serverAPI.post(END_POINT.ORDER.LIST, { json: body });
 
-  const data = (await response.json()) as ApiResponse<null>;
+    const data = (await response.json()) as ApiResponse<null>;
 
-  return data.data;
+    return data;
+  } catch (error) {
+    return parseErrorResponse(error) as ApiResponse<null>;
+  }
 };

@@ -35,7 +35,24 @@ export const serverAPI = ky.create({
           removeTokenFromCookie();
           redirect("/");
         }
-        return error;
+
+        // 에러 응답 본문을 파싱해서 커스텀 에러로 throw
+        const errorData = (await error.response.json()) as {
+          code: string;
+          message: string;
+          data: Record<string, string> | null;
+        };
+        const customError = new Error(
+          errorData.message || error.message
+        ) as any;
+
+        customError.code = errorData.code;
+        customError.message = errorData.message;
+        customError.data = errorData.data;
+        customError.response = errorData;
+        customError.status = error.response.status;
+
+        return customError;
       },
     ],
     afterResponse: [
